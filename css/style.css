@@ -47,7 +47,7 @@ background:
 .hero-top{
 position:relative;z-index:3;
 text-align:left;
-padding:20px 28px 0;
+padding:0 28px 0;
 flex-shrink:0;
 }
 .hero-logo{
@@ -65,7 +65,7 @@ padding:0;
 }
 .hero-photo{
 position:absolute;
-right:-17%;bottom:200px;
+right:-17%;bottom:80px;
 width:90%;
 z-index:1;
 }
@@ -86,7 +86,7 @@ margin:8px 0;
 position:relative;z-index:4;
 text-align:center;
 padding:0 20px 16px;
-margin-top:-200px;
+margin-top:-80px;
 }
 .btn-hero{
 display:flex;align-items:center;justify-content:center;gap:12px;
@@ -135,7 +135,7 @@ opacity:.7;
   .hero-meta{font-size:10px;margin-bottom:0}
 }
 @media(max-width:480px){
-  .hero-top{padding:16px 20px 0}
+  .hero-top{padding:0 20px 0}
   .hero-logo{width:180px}
   .hero-text{max-width:58%;padding:0 20px 12px}
   .hero-photo{width:90%;right:-17%}
