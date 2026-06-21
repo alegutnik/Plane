@@ -47,7 +47,7 @@ background:
 .hero-top{
 position:relative;z-index:3;
 text-align:left;
-padding:40px 28px 0;
+padding:28px 28px 0;
 flex-shrink:0;
 }
 .hero-logo{
@@ -74,19 +74,18 @@ width:100%;display:block;
 }
 .hero-text{
 position:relative;z-index:2;
-padding:0 28px 32px;
+padding:0 28px 16px;
 max-width:55%;
 }
 .hero-split{
 width:100%;max-width:280px;
 display:block;
-margin:8px 0 12px;
-mix-blend-mode:screen;
+margin:8px 0 8px;
 }
 .hero-btn-wrap{
 position:relative;z-index:4;
 text-align:center;
-padding:0 20px 36px;
+padding:0 20px 24px;
 }
 .btn-hero{
 display:flex;align-items:center;justify-content:center;gap:12px;
@@ -120,7 +119,7 @@ opacity:.7;
 @media(min-width:901px){
   .hero-top{padding:60px 0 0;text-align:center}
   .hero-logo{width:280px;margin:0 auto 16px}
-  .hero-text{max-width:50%;padding:0 0 60px 5%}
+  .hero-text{max-width:50%;padding:0 0 40px 5%}
   .hero-photo{width:60%;right:0}
   .hero-body{max-width:1200px;margin:0 auto}
   .hero h1{font-size:50px}
@@ -135,9 +134,9 @@ opacity:.7;
   .hero-meta{font-size:10px;margin-bottom:0;white-space:nowrap}
 }
 @media(max-width:480px){
-  .hero-top{padding:32px 20px 0}
+  .hero-top{padding:20px 20px 0}
   .hero-logo{width:180px}
-  .hero-text{max-width:58%;padding:0 20px 24px}
+  .hero-text{max-width:58%;padding:0 20px 12px}
   .hero-photo{width:85%;right:-10%}
   .hero h1{font-size:22px}
   .btn-hero{font-size:15px;padding:16px 24px}
