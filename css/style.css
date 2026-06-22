@@ -49,7 +49,7 @@ position:relative;z-index:3;
 text-align:left;
 padding:0 28px 0;
 flex-shrink:0;
-transform:translateY(-30px);
+transform:translateY(-20px);
 }
 .hero-logo{
 width:220px;
@@ -76,7 +76,7 @@ width:100%;display:block;
 position:relative;z-index:2;
 padding:0 28px 10px;
 max-width:55%;
-transform:translateY(-30px);
+transform:translateY(-20px);
 }
 .hero-split{
 width:120px;
