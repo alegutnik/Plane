@@ -77,8 +77,8 @@ align-self:flex-start;
 flex:1;
 align-self:flex-end;
 position:relative;
-margin-right:-20%;
-margin-left:-8%;
+margin-right:-10%;
+margin-left:-20%;
 pointer-events:none;
 }
 .hero-photo img{width:100%;display:block}
