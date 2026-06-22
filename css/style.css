@@ -44,50 +44,34 @@ content:'';position:absolute;inset:0;
 background:
   linear-gradient(180deg,rgba(11,26,46,.45) 0%,rgba(11,26,46,.15) 40%,rgba(11,26,46,.55) 100%);
 }
-.hero-top{
-position:relative;z-index:3;
-text-align:left;
-padding:0 28px 0;
-flex-shrink:0;
-transform:translateY(-20px);
-}
-.hero-logo{
-width:220px;
-display:block;
-margin:0 0 8px;
-}
-.hero-body{
-position:relative;z-index:2;
-display:flex;
-align-items:flex-start;
-width:100%;
-padding:0;
-}
+/* photo: lives on the right, body bleeds off the edge, never crosses into text column */
 .hero-photo{
 position:absolute;
-right:-17%;bottom:80px;
-width:90%;
+right:-12%;bottom:96px;
+width:72%;
 z-index:1;
+pointer-events:none;
 }
-.hero-photo img{
-width:100%;display:block;
-}
-.hero-text{
+.hero-photo img{width:100%;display:block}
+
+/* single left text column with organic vertical rhythm via gap */
+.hero-content{
 position:relative;z-index:2;
-padding:0 28px 10px;
-max-width:55%;
-transform:translateY(-20px);
+display:flex;flex-direction:column;
+align-items:flex-start;
+gap:14px;
+width:56%;
+padding:36px 24px 0;
 }
-.hero-split{
-width:120px;
-display:block;
-margin:6px 0;
-}
+.hero-logo{width:200px;display:block;margin:0}
+.hero-split{width:120px;display:block;margin:0}
+
+/* button pinned to the bottom of the hero, fills remaining space organically */
 .hero-btn-wrap{
 position:relative;z-index:4;
 text-align:center;
-padding:0 20px 16px;
-margin-top:-80px;
+padding:0 20px 20px;
+margin-top:auto;
 }
 .btn-hero{
 display:flex;align-items:center;justify-content:center;gap:12px;
@@ -119,45 +103,44 @@ opacity:.7;
 
 /* desktop hero */
 @media(min-width:901px){
-  .hero-top{padding:60px 0 0;text-align:center}
-  .hero-logo{width:280px;margin:0 auto 16px}
-  .hero-text{max-width:50%;padding:0 0 40px 5%}
-  .hero-photo{width:60%;right:0}
-  .hero-body{max-width:1200px;margin:0 auto}
+  .hero-content{width:50%;padding:64px 0 0 6%;gap:18px;max-width:640px}
+  .hero-logo{width:280px}
+  .hero-photo{width:58%;right:0;bottom:0}
   .hero h1{font-size:50px}
-  .hero-sub{text-align:center}
+  .hero-sub{font-size:18px}
   .btn-hero{max-width:500px;font-size:20px;padding:22px 40px}
 }
 
 /* mobile */
 @media(max-width:900px){
   .hero h1{font-size:26px}
-  .hero-sub{font-size:13px}
-  .hero-meta{font-size:10px;margin-bottom:0}
 }
 @media(max-width:480px){
-  .hero-top{padding:0 20px 0}
-  .hero-logo{width:180px}
-  .hero-text{max-width:58%;padding:0 20px 12px}
-  .hero-photo{width:90%;right:-17%}
-  .hero h1{font-size:22px}
+  .hero-content{width:56%;padding:28px 20px 0;gap:12px}
+  .hero-logo{width:170px}
+  .hero-photo{width:88%;right:-18%;bottom:78px}
+  .hero h1{font-size:23px}
+  .hero-sub{font-size:13px}
+  .hero-meta{font-size:11px}
   .btn-hero{font-size:15px;padding:16px 24px}
 }
 .hero h1{
 font-size:clamp(28px,5vw,52px);
 color:var(--white);
-margin-bottom:0;
-line-height:1.2;
+margin:0;
+line-height:1.18;
 }
 .hero h1 span{color:var(--gold)}
 .hero-sub{
-font-size:18px;color:var(--white-dim);
-max-width:600px;margin:0 auto 6px;
+font-size:15px;color:var(--gold-light);
+font-style:italic;
+margin:0;
 font-weight:300;
+line-height:1.4;
 }
 .hero-meta{
 font-size:13px;color:var(--gold-light);
-margin-bottom:8px;
+margin:0;
 letter-spacing:0;
 }
 .btn-primary{
