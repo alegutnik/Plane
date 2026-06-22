@@ -49,15 +49,15 @@ position:relative;z-index:3;
 text-align:left;
 padding:0 28px 0;
 flex-shrink:0;
+transform:translateY(-30px);
 }
 .hero-logo{
 width:220px;
 display:block;
-margin:0 0 12px;
+margin:0 0 8px;
 }
 .hero-body{
 position:relative;z-index:2;
-flex:1;
 display:flex;
 align-items:flex-start;
 width:100%;
@@ -76,11 +76,12 @@ width:100%;display:block;
 position:relative;z-index:2;
 padding:0 28px 10px;
 max-width:55%;
+transform:translateY(-30px);
 }
 .hero-split{
 width:120px;
 display:block;
-margin:8px 0;
+margin:6px 0;
 }
 .hero-btn-wrap{
 position:relative;z-index:4;
@@ -151,7 +152,7 @@ line-height:1.2;
 .hero h1 span{color:var(--gold)}
 .hero-sub{
 font-size:18px;color:var(--white-dim);
-max-width:600px;margin:0 auto 12px;
+max-width:600px;margin:0 auto 6px;
 font-weight:300;
 }
 .hero-meta{
