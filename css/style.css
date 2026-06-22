@@ -48,34 +48,46 @@ content:'';position:absolute;inset:0;
 background:
   linear-gradient(180deg,rgba(11,26,46,.45) 0%,rgba(11,26,46,.15) 40%,rgba(11,26,46,.55) 100%);
 }
-/* photo: lives on the right, body bleeds off the edge, never crosses into text column */
+/* row that fills remaining hero height: text left, photo right (bottom-aligned to touch button top) */
+.hero-row{
+position:relative;z-index:2;
+flex:1;
+display:flex;
+align-items:flex-end;
+width:100%;
+padding-top:28px;
+min-height:0;
+}
+
+/* text column: strict width, content cannot overflow into photo */
+.hero-content{
+display:flex;flex-direction:column;
+align-items:flex-start;
+gap:12px;
+width:54%;
+flex-shrink:0;
+padding:0 0 0 20px;
+align-self:flex-start;
+}
+.hero-logo{width:170px;display:block;margin:0;max-width:100%}
+.hero-split{width:120px;display:block;margin:0;max-width:100%}
+
+/* photo zone: takes remaining width on the right, image bottom flush with hero-row bottom (= button top) */
 .hero-photo{
-position:absolute;
-right:-12%;bottom:96px;
-width:72%;
-z-index:1;
+flex:1;
+align-self:flex-end;
+position:relative;
+margin-right:-12%;
 pointer-events:none;
 }
 .hero-photo img{width:100%;display:block}
 
-/* single left text column with organic vertical rhythm via gap */
-.hero-content{
-position:relative;z-index:2;
-display:flex;flex-direction:column;
-align-items:flex-start;
-gap:14px;
-width:56%;
-padding:36px 24px 0;
-}
-.hero-logo{width:200px;display:block;margin:0}
-.hero-split{width:120px;display:block;margin:0}
-
-/* button pinned to the bottom of the hero, fills remaining space organically */
+/* button pinned to the bottom of the hero */
 .hero-btn-wrap{
 position:relative;z-index:4;
 text-align:center;
 padding:0 20px 20px;
-margin-top:auto;
+flex-shrink:0;
 }
 .btn-hero{
 display:flex;align-items:center;justify-content:center;gap:12px;
@@ -105,10 +117,7 @@ font-size:22px;
 opacity:.7;
 }
 
-/* mobile-only — base styles */
-.hero-content{width:56%;padding:28px 20px 0;gap:12px}
-.hero-logo{width:170px}
-.hero-photo{width:88%;right:-18%;bottom:78px}
+/* mobile-only typography */
 .hero h1{font-size:23px}
 .hero-sub{font-size:13px}
 .hero-meta{font-size:11px}
