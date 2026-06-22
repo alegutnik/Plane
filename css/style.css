@@ -288,6 +288,23 @@ text-transform:uppercase;
 .tariff-card h3{
 font-size:28px;margin-bottom:8px;color:var(--gold-light);
 }
+.tariff-price{
+display:flex;align-items:baseline;justify-content:center;gap:16px;
+margin:20px 0 20px;
+}
+.price-old{
+font-size:26px;color:var(--white-dim);
+text-decoration:line-through;
+text-decoration-color:rgba(212,175,55,.7);
+font-weight:400;
+font-family:'Cormorant Garamond',serif;
+}
+.price-new{
+font-size:38px;color:var(--gold);
+font-weight:700;
+font-family:'Cormorant Garamond',serif;
+letter-spacing:.5px;
+}
 .tariff-card .tariff-desc{
 font-size:14px;color:var(--white-dim);margin-bottom:24px;line-height:1.6;
 }
