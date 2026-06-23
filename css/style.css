@@ -262,10 +262,7 @@ position:relative;
 transition:all .35s;
 }
 .tariff-card.featured{
-border:2px solid transparent;
-background:
-  linear-gradient(rgba(20,30,46,.92),rgba(20,30,46,.92)) padding-box,
-  linear-gradient(180deg,#f4d77a 0%,#e6bf52 18%,#c99428 50%,#e6bf52 82%,#f4d77a 100%) border-box;
+border:1px solid var(--gold);
 box-shadow:none;
 }
 .tariff-card.featured::before{display:none}
