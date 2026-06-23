@@ -254,7 +254,7 @@ z-index:0;
 .tariffs .container{position:relative;z-index:1}
 .tariff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px;align-items:start}
 .tariff-card{
-background:var(--glass);
+background:rgba(20,30,46,.92);
 border:1px solid rgba(201,168,76,.15);
 border-radius:20px;
 padding:40px 32px;
@@ -264,11 +264,9 @@ transition:all .35s;
 .tariff-card.featured{
 border:2px solid transparent;
 background:
-  linear-gradient(var(--glass),var(--glass)) padding-box,
+  linear-gradient(rgba(20,30,46,.92),rgba(20,30,46,.92)) padding-box,
   linear-gradient(180deg,#f4d77a 0%,#e6bf52 18%,#c99428 50%,#e6bf52 82%,#f4d77a 100%) border-box;
-backdrop-filter:blur(8px);
--webkit-backdrop-filter:blur(8px);
-box-shadow:0 0 60px rgba(201,168,76,.18);
+box-shadow:none;
 }
 .tariff-card.featured::before{display:none}
 .tariff-popular{
