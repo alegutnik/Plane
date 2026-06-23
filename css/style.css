@@ -41,7 +41,7 @@ justify-content:center;
 }
 .hero-bg{
 position:absolute;inset:0;
-background:url('../img/background.png') center/cover no-repeat;
+background:url('../img/background.webp') center/cover no-repeat;
 z-index:0;
 }
 .hero-bg::after{
@@ -247,7 +247,7 @@ overflow:hidden;
 }
 .tariffs-bg{
 position:absolute;inset:0;
-background:url('../img/back_long.png') top center/100% auto no-repeat;
+background:url('../img/back_long.webp') top center/100% auto no-repeat;
 opacity:1;
 z-index:0;
 }
@@ -594,7 +594,7 @@ overflow:hidden;
 }
 .results-bg{
 position:absolute;inset:0;
-background:url('../img/background_result.png') center/cover no-repeat;
+background:url('../img/background_result.webp') center/cover no-repeat;
 opacity:.55;
 z-index:0;
 }
