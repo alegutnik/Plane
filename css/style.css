@@ -264,8 +264,10 @@ transition:all .35s;
 .tariff-card.featured{
 border:2px solid transparent;
 background:
-  linear-gradient(var(--navy-card),var(--navy-card)) padding-box,
+  linear-gradient(var(--glass),var(--glass)) padding-box,
   linear-gradient(180deg,#f4d77a 0%,#e6bf52 18%,#c99428 50%,#e6bf52 82%,#f4d77a 100%) border-box;
+backdrop-filter:blur(8px);
+-webkit-backdrop-filter:blur(8px);
 box-shadow:0 0 60px rgba(201,168,76,.18);
 }
 .tariff-card.featured::before{display:none}
@@ -411,15 +413,16 @@ margin-bottom:14px;
 .payment-actions{display:flex;flex-direction:column;gap:12px}
 .btn-payment{
 display:block;width:100%;
-padding:14px 20px;
+padding:14px 16px;
 text-align:center;
 border-radius:60px;
 font-family:'Montserrat',sans-serif;
-font-weight:700;font-size:14px;
-letter-spacing:.8px;
+font-weight:700;font-size:13px;
+letter-spacing:.5px;
 text-decoration:none;
 cursor:pointer;
 transition:all .3s;
+white-space:nowrap;
 }
 .btn-payment-primary{
 color:#0D1B2A;
