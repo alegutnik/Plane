@@ -33,3 +33,39 @@ const glowObs=new IntersectionObserver((entries)=>{
 if(window.innerWidth<=900){
   document.querySelectorAll('.audience-card').forEach(el=>glowObs.observe(el));
 }
+
+// Reviews carousel
+(function(){
+  const track=document.getElementById('reviews-track');
+  const dotsBox=document.getElementById('reviews-dots');
+  if(!track||!dotsBox)return;
+  const slides=track.querySelectorAll('.review-slide');
+  const prev=document.querySelector('.reviews-prev');
+  const next=document.querySelector('.reviews-next');
+  slides.forEach((_,i)=>{
+    const b=document.createElement('button');
+    b.addEventListener('click',()=>goTo(i));
+    dotsBox.appendChild(b);
+  });
+  const dots=dotsBox.querySelectorAll('button');
+  function goTo(i){
+    track.scrollTo({left:slides[i].offsetLeft-track.offsetLeft,behavior:'smooth'});
+  }
+  function updateActive(){
+    const i=Math.round(track.scrollLeft/track.clientWidth);
+    dots.forEach((d,idx)=>d.classList.toggle('active',idx===i));
+  }
+  track.addEventListener('scroll',()=>{
+    clearTimeout(track._t);
+    track._t=setTimeout(updateActive,80);
+  });
+  prev&&prev.addEventListener('click',()=>{
+    const i=Math.round(track.scrollLeft/track.clientWidth);
+    goTo(Math.max(0,i-1));
+  });
+  next&&next.addEventListener('click',()=>{
+    const i=Math.round(track.scrollLeft/track.clientWidth);
+    goTo(Math.min(slides.length-1,i+1));
+  });
+  updateActive();
+})();
