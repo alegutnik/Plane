@@ -191,18 +191,24 @@ var PRODUCTS = {
       return;
     }
 
-    // Подставляем в текст название тарифа и сумму, если знаем товар.
-    if (product) {
-      var nameEl = document.querySelector('[data-fill="product"]');
-      var priceEl = document.querySelector('[data-fill="price"]');
-      if (nameEl) nameEl.textContent = product.label || product.name;
-      if (priceEl) {
-        priceEl.textContent = (product.currency === 'UAH' ? '' : '€') +
-          product.value + (product.currency === 'UAH' ? ' грн' : '');
-      }
+    var lead = document.querySelector('.status-lead');
+
+    if (!product) {
+      // Товар неизвестен (параметр ?p= потерялся) — показываем обычное
+      // «дякуємо» без строки с тарифом, чтобы не было прочерков.
+      if (lead) lead.hidden = true;
+      return;
     }
 
-    if (!product) return;
+    // Подставляем в текст название тарифа и сумму.
+    var nameEl = document.querySelector('[data-fill="product"]');
+    var priceEl = document.querySelector('[data-fill="price"]');
+    if (nameEl) nameEl.textContent = product.label || product.name;
+    if (priceEl) {
+      priceEl.textContent = product.currency === 'UAH'
+        ? product.value + ' грн'
+        : '€' + product.value;
+    }
 
     // Защита от повторной отправки при обновлении страницы.
     var guard = 'purchase_' + (order || key);
