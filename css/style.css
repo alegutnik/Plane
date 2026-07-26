@@ -748,3 +748,50 @@ transition:opacity .6s ease,transform .6s ease;
   .program-block{padding-left:48px}
   .program-dot{left:7px}
 }
+
+/* ══════════ STATUS PAGES (success / fail) ══════════ */
+[hidden]{display:none !important}
+.status-page{
+min-height:100vh;
+min-height:100svh;
+position:relative;
+overflow:hidden;
+display:flex;flex-direction:column;justify-content:center;
+}
+.status-inner{
+position:relative;z-index:2;
+text-align:center;
+padding:40px 24px;
+}
+.status-logo{
+display:block;width:150px;max-width:60%;
+margin:0 auto 28px;
+}
+.status-icon{
+width:72px;height:72px;
+margin:0 auto 20px;
+border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+font-size:34px;line-height:1;
+border:2px solid var(--gold);
+color:var(--gold);
+background:rgba(212,175,55,.08);
+box-shadow:0 0 30px rgba(212,175,55,.18);
+}
+.status-icon.is-fail{
+border-color:#d98a8a;
+color:#d98a8a;
+background:rgba(217,138,138,.08);
+box-shadow:0 0 30px rgba(217,138,138,.15);
+}
+.status-page h1{
+font-size:32px;line-height:1.15;
+color:var(--milk);
+margin-bottom:10px;
+text-transform:uppercase;
+}
+.status-lead{
+font-size:15px;color:var(--gold-light);
+margin-bottom:24px;
+}
+.status-lead strong{color:var(--gold);font-weight:600}

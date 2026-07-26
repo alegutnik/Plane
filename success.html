@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Дякуємо за покупку — PLANE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=19">
+<script src="js/analytics.js?v=4"></script>
+</head>
+<body data-page="success">
+
+<section class="status-page">
+  <div class="hero-bg"></div>
+  <div class="container status-inner">
+
+    <img src="img/logo.webp" alt="PLANE" class="status-logo">
+
+    <!-- Оплата прошла -->
+    <div id="state-success">
+      <div class="status-icon">&#10003;</div>
+      <h1>Дякуємо<br>за покупку!</h1>
+      <p class="status-lead">
+        <strong data-fill="product">—</strong> &middot; <strong data-fill="price">—</strong>
+      </p>
+
+      <div class="payment-card">
+        <p>Оплата пройшла успішно. Найближчим часом на вашу пошту прийде лист із підтвердженням та всіма деталями доступу.</p>
+        <p>Якщо лист не прийшов протягом 15 хвилин — перевірте папку «Спам» або напишіть у службу турботи, ми одразу все вирішимо.</p>
+        <div class="payment-actions">
+          <a href="https://t.me/anastasikarimova" target="_blank" class="btn-payment btn-payment-primary" data-track="contact" data-method="telegram_success">Написати в службу турботи</a>
+          <a href="index.html" class="btn-payment btn-payment-secondary">Повернутися на сайт</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- WayForPay вернул на эту страницу, но платёж не прошёл -->
+    <div id="state-declined" hidden>
+      <div class="status-icon is-fail">&#10005;</div>
+      <h1>Оплата<br>не пройшла</h1>
+      <p class="status-lead">Кошти не списані</p>
+
+      <div class="payment-card">
+        <p>Банк відхилив платіж. Найчастіше це через ліміт на інтернет-платежі або недостатньо коштів на картці.</p>
+        <p>Спробуйте ще раз або іншою карткою. Якщо не виходить — напишіть нам, підберемо зручний спосіб оплати.</p>
+        <div class="payment-actions">
+          <a href="index.html#tariffs" class="btn-payment btn-payment-primary">Спробувати ще раз</a>
+          <a href="https://t.me/anastasikarimova" target="_blank" class="btn-payment btn-payment-secondary" data-track="contact" data-method="telegram_declined">Написати в службу турботи</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
