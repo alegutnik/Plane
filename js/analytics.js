@@ -40,7 +40,7 @@ var SITE_MODE = 'presale';
 var PRESALE = {
   url: 'https://t.me/ANASTASIKARIMOVABOT?start=link_Hwu0pAokaT',
   // Коротко, чтобы влезало в одну строку на узких телефонах (360px)
-  buttonText: 'У передзапис'
+  buttonText: 'Передзапис'
 };
 
 // Единый источник правды по товарам. Ключ используется в
