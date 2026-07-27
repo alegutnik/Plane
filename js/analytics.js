@@ -19,21 +19,51 @@ var ANALYTICS = {
   clarityId: 'xsmu2j8nfw'         // Сайт PLANE
 };
 
+/* ══════════════════════════════════════════════════════════════
+   РЕЖИМ САЙТА — одна строка переключает весь сайт целиком
+   ══════════════════════════════════════════════════════════════
+
+     'presale' — курс НЕ продаётся. Кнопки ведут в телеграм-бот
+                 на передзапис, в аналитику идёт событие Lead
+                 БЕЗ суммы (деньги в отчётах не появляются).
+
+     'sales'   — курс продаётся. Кнопки ведут на WayForPay,
+                 в аналитику идёт InitiateCheckout с суммой,
+                 а после оплаты — Purchase со страницы success.
+
+   Чтобы открыть продажи: заменить 'presale' на 'sales' —
+   ссылки, тексты кнопок и события переключатся сами.
+   ══════════════════════════════════════════════════════════════ */
+
+var SITE_MODE = 'presale';
+
+var PRESALE = {
+  url: 'https://t.me/ANASTASIKARIMOVABOT?start=link_Hwu0pAokaT',
+  // Коротко, чтобы влезало в одну строку на узких телефонах (360px)
+  buttonText: 'У передзапис'
+};
+
 // Единый источник правды по товарам. Ключ используется в
 // data-product="..." на кнопках и в success.html?p=<ключ>
-//   name  — как товар называется в отчётах Pixel/GA4 (латиницей, без пробелов)
-//   label — как он показывается покупателю на странице оплаты
+//   name   — как товар называется в отчётах Pixel/GA4 (латиницей, без пробелов)
+//   label  — как он показывается покупателю на странице оплаты
+//   payUrl — ссылка WayForPay, подставляется в режиме 'sales'
 var PRODUCTS = {
-  comfort:  { name: 'COMFORT',      label: 'COMFORT',          value: 418, currency: 'EUR' },
-  business: { name: 'BUSINESS',     label: 'BUSINESS',         value: 478, currency: 'EUR' },
-  first:    { name: 'PERSHYI_KLAS', label: 'ПЕРШИЙ КЛАС',      value: 918, currency: 'EUR' },
-  booking:  { name: 'BRON_888',     label: 'Бронювання місця', value: 888, currency: 'UAH' }
+  comfort:  { name: 'COMFORT',      label: 'COMFORT',          value: 418, currency: 'EUR',
+              payUrl: 'https://secure.wayforpay.com/button/b1506e42af2d6' },
+  business: { name: 'BUSINESS',     label: 'BUSINESS',         value: 478, currency: 'EUR',
+              payUrl: 'https://secure.wayforpay.com/button/b5bd2947dd630' },
+  first:    { name: 'PERSHYI_KLAS', label: 'ПЕРШИЙ КЛАС',      value: 918, currency: 'EUR',
+              payUrl: 'https://secure.wayforpay.com/button/b0616768c302e' },
+  booking:  { name: 'BRON_888',     label: 'Бронювання місця', value: 888, currency: 'UAH',
+              payUrl: 'https://secure.wayforpay.com/button/bbc70fafd3b8d' }
 };
 
 (function () {
   'use strict';
 
   var cfg = window.ANALYTICS || {};
+  var mode = window.SITE_MODE === 'sales' ? 'sales' : 'presale';
 
   /* ── 1. Loaders ───────────────────────────────────────────── */
 
@@ -113,10 +143,34 @@ var PRODUCTS = {
 
   /* ── 3. Wiring (needs DOM) ────────────────────────────────── */
 
+  // Приводит страницу к текущему режиму: куда ведут кнопки, что на
+  // них написано и какие блоки текста показаны.
+  function applyMode() {
+    // Блоки с data-mode показываются только в своём режиме.
+    document.querySelectorAll('[data-mode]').forEach(function (el) {
+      el.hidden = el.getAttribute('data-mode') !== mode;
+    });
+
+    document.querySelectorAll('[data-track="cta"]').forEach(function (el) {
+      var product = PRODUCTS[el.getAttribute('data-product')];
+      if (!product) return;
+
+      if (mode === 'presale') {
+        el.href = PRESALE.url;
+        el.textContent = PRESALE.buttonText;
+      } else {
+        el.href = product.payUrl;
+        el.textContent = el.getAttribute('data-sales-text') || 'Придбати';
+      }
+    });
+  }
+
   function init() {
     var page = document.body.getAttribute('data-page');
 
-    // 3a. Клик по кнопкам: оплата и контакты.
+    applyMode();
+
+    // 3a. Клик по кнопкам: главный призыв и контакты.
     // Один делегированный обработчик вместо onclick в разметке.
     document.addEventListener('click', function (e) {
       var el = e.target.closest('[data-track]');
@@ -124,10 +178,22 @@ var PRODUCTS = {
 
       var type = el.getAttribute('data-track');
 
-      if (type === 'checkout') {
+      if (type === 'cta') {
         var key = el.getAttribute('data-product');
         var product = PRODUCTS[key];
-        if (product) send('InitiateCheckout', 'begin_checkout', key, product);
+        if (!product) return;
+
+        if (mode === 'presale') {
+          // Передзапис — не покупка. Шлём Lead без суммы и валюты,
+          // иначе в отчётах о выручке появятся несуществующие деньги.
+          // Название тарифа сохраняем — видно, какой пакет интереснее.
+          sendSimple('Lead', 'generate_lead', {
+            content_name: product.name,
+            content_category: 'presale'
+          });
+        } else {
+          send('InitiateCheckout', 'begin_checkout', key, product);
+        }
       }
 
       if (type === 'contact') {

@@ -1,4 +1,7 @@
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+/* Скрытие через атрибут hidden должно побеждать display из классов
+   (иначе .btn-payment{display:block} перекрывает браузерное правило) */
+[hidden]{display:none!important}
 :root{
 --navy:#0D1B2A;
 --navy-light:#1B263B;
